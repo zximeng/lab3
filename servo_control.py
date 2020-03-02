@@ -10,16 +10,18 @@ time.sleep(3)
 # each step would be 0.02 ms
 # to rotate clockwise, from 1.5 to 1.3 
 # to rotate counter-clockwise, from 
+newduty = 1.5
 for x in range(0, 10):
-    newduty = 1.5 - 0.02
+    newduty = newduty  - 0.02
     newfreq = 1000 / ( newduty + 20)
     newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc)
     print('clockwise phase: ' + str(x)) 
     time.sleep(3)
+newduty = 1.5
 for x in range(0, 10):
-    newduty = 1.5 + 0.02
+    newduty = newduty + 0.02
     newfreq = 1000 / ( newduty + 20)
     newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
