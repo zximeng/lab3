@@ -19,7 +19,7 @@ for x in range(0, 10):
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc)
     print('clockwise phase: ' + str(x))
-    print("current frequence: "+ newfreq +"duty cycle:"+ newduty + "current duty: "+ newdc) 
+    print("current frequence: "+ str(newfreq) +"duty cycle:"+ str(newduty) + "current duty: "+ str(newdc))
     if x == 4:
         print('halfway there')
         os.system('scrot')
@@ -35,7 +35,7 @@ for x in range(0, 10):
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc) 
     print('counter-clockwise phase: ' + str(x))
-    print("current frequence: "+ newfreq +"duty cycle:"+ newduty + "current duty: "+ newdc)
+    print("current frequence: "+ str(newfreq) +"duty cycle:"+ str(newduty) + "current duty: "+ str(newdc))
     if x == 4:
         print('halfway there')
         os.system('scrot')
