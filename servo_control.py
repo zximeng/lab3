@@ -11,7 +11,19 @@ time.sleep(3)
 # to rotate clockwise, from 1.5 to 1.3 
 # to rotate counter-clockwise, from 
 for x in range(0, 10):
-    newduty = 1.5 
+    newduty = 1.5 - 0.02
+    newfreq = 1000 / ( newduty + 20)
+    newdc = (newduty / (newduty+20)) / 100
+    p.ChangeFrequency(newfreq)
+    p.ChangeDutyCycle(newdc) 
+    time.sleep(3)
+for x in range(0, 10):
+    newduty = 1.5 + 0.02
+    newfreq = 1000 / ( newduty + 20)
+    newdc = (newduty / (newduty+20)) / 100
+    p.ChangeFrequency(newfreq)
+    p.ChangeDutyCycle(newdc) 
+    time.sleep(3)
 
 p.stop()
 GPIO.cleanup()
