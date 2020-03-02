@@ -16,7 +16,7 @@ for x in range(0, 10):
     newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc)
-    print('clockwise phase: ' + x) 
+    print('clockwise phase: ' + str(x)) 
     time.sleep(3)
 for x in range(0, 10):
     newduty = 1.5 + 0.02
@@ -24,7 +24,7 @@ for x in range(0, 10):
     newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc) 
-    print('counter-clockwise phase: ' + x) 
+    print('counter-clockwise phase: ' + str(x)) 
     time.sleep(3)
 
 p.stop()
