@@ -4,7 +4,7 @@ import os
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(32, GPIO.OUT)
 
-p = GPIO.PWM(32, 46.5)  # channel=12 frequency=50Hz
+p = GPIO.PWM(32, 46.5)  
 p.start(7)
 time.sleep(3)
 # 1.7 - 1.5 / 10 = 0.02ms 
@@ -19,7 +19,7 @@ for x in range(0, 10):
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc)
     print('clockwise phase: ' + str(x))
-    print("current frequence: "+ str(newfreq) +"duty cycle:"+ str(newduty) + "current duty: "+ str(newdc))
+    print("current frequence: "+ str(newfreq) +"pulse width:"+ str(newduty) + "duty cycle: "+ str(newdc))
     if x == 4:
         print('halfway there')
         os.system('scrot')
@@ -35,7 +35,7 @@ for x in range(0, 10):
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc) 
     print('counter-clockwise phase: ' + str(x))
-    print("current frequence: "+ str(newfreq) +"duty cycle:"+ str(newduty) + "current duty: "+ str(newdc))
+    print("current frequence: "+ str(newfreq) +"pulse width:"+ str(newduty) + "duty cycle: "+ str(newdc))
     if x == 4:
         print('halfway there')
         os.system('scrot')
