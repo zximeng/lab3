@@ -13,16 +13,18 @@ time.sleep(3)
 for x in range(0, 10):
     newduty = 1.5 - 0.02
     newfreq = 1000 / ( newduty + 20)
-    newdc = (newduty / (newduty+20)) / 100
+    newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
-    p.ChangeDutyCycle(newdc) 
+    p.ChangeDutyCycle(newdc)
+    print('clockwise phase: ' + x) 
     time.sleep(3)
 for x in range(0, 10):
     newduty = 1.5 + 0.02
     newfreq = 1000 / ( newduty + 20)
-    newdc = (newduty / (newduty+20)) / 100
+    newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc) 
+    print('counter-clockwise phase: ' + x) 
     time.sleep(3)
 
 p.stop()
