@@ -18,7 +18,8 @@ for x in range(0, 10):
     newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc)
-    print('clockwise phase: ' + str(x)) 
+    print('clockwise phase: ' + str(x))
+    print("current frequence: "+ newfreq +"duty cycle:"+ newduty + "current duty: "+ newdc) 
     if x == 4:
         print('halfway there')
         os.system('scrot')
@@ -34,6 +35,7 @@ for x in range(0, 10):
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc) 
     print('counter-clockwise phase: ' + str(x))
+    print("current frequence: "+ newfreq +"duty cycle:"+ newduty + "current duty: "+ newdc)
     if x == 4:
         print('halfway there')
         os.system('scrot')
@@ -41,8 +43,11 @@ for x in range(0, 10):
         print('full speed')
         os.system('scrot')
     time.sleep(3)
+print('back to idle')
+os.system('scrot')
 p.ChangeFrequency(46.5) # back to idle
 p.ChangeDutyCycle(7) 
-print('back to idle')
+
+
 p.stop()
 GPIO.cleanup()
