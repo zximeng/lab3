@@ -1,5 +1,6 @@
 import time
 import RPi.GPIO as GPIO
+import os
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(32, GPIO.OUT)
 
@@ -18,6 +19,12 @@ for x in range(0, 10):
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc)
     print('clockwise phase: ' + str(x)) 
+    if x == 4:
+        print('halfway there')
+        os.system('scrot')
+    elif x == 9:
+        print('full speed')
+        os.system('scrot')
     time.sleep(3)
 newduty = 1.5
 for x in range(0, 10):
@@ -26,8 +33,16 @@ for x in range(0, 10):
     newdc = (newduty / (newduty+20)) * 100
     p.ChangeFrequency(newfreq)
     p.ChangeDutyCycle(newdc) 
-    print('counter-clockwise phase: ' + str(x)) 
+    print('counter-clockwise phase: ' + str(x))
+    if x == 4:
+        print('halfway there')
+        os.system('scrot')
+    elif x == 9:
+        print('full speed')
+        os.system('scrot')
     time.sleep(3)
-
+p.ChangeFrequency(46.5) # back to idle
+p.ChangeDutyCycle(7) 
+print('back to idle')
 p.stop()
 GPIO.cleanup()
