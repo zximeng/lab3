@@ -14,8 +14,7 @@ while(True):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 	time.sleep(0.1)
 	if(not GPIO.input(22)):
-		p1.ChangeFrequency(46.5)
-		p1.ChangeDutyCycle(7)
+		p1.stop()
 	if(not GPIO.input(23)):
 		p1.ChangeFrequency(46.08)
 		p1.ChangeDutyCycle(7.83)		
@@ -23,8 +22,7 @@ while(True):
 		p1.ChangeFrequency(46.95)
 		p1.ChangeDutyCycle(6.10)	
 	if(not GPIO.input(19)):
-		p2.ChangeFrequency(46.5)
-		p2.ChangeDutyCycle(7)
+		p2.stop()
 	if(not GPIO.input(26)):
 		p2.ChangeFrequency(46.08)
 		p2.ChangeDutyCycle(7.83)		
