@@ -79,7 +79,7 @@ green = (0, 255, 0)
 blue = (0, 0, 128) 
 screen = pygame.display.set_mode((320, 240))
 my_font= pygame.font.Font(None, 50)
-my_buttons= { 'stop':(160,120), ''}
+my_buttons= { 'stop':(160,120), 'quit': (160,200)}
 
 command = ['stop', 'clockwise','counter-clockwise']
 
