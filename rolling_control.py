@@ -9,8 +9,26 @@ import pygame     # Import pygame graphics library
 import os    # for OS calls
 import time
 import RPi.GPIO as GPIO
-# GPIO init
 
+#pygame init 
+pygame.init()
+pygame.mouse.set_visible(False)
+WHITE = 255, 255, 255
+BLACK = 0,0,0
+green = (0, 255, 0) 
+blue = (0, 0, 128) 
+screen = pygame.display.set_mode((320, 240))
+my_font= pygame.font.Font(None, 50)
+my_buttons= { 'stop':(160,120), 'quit': (160,200)}
+
+command = ['stop', 'clockwise','counter-clockwise']
+
+#left log queue for printing 
+leftlogqueue = ['stop', 'stop','stop']
+# right log queue for printing
+rightlogqueue = ['stop', 'stop','stop']
+
+#GPIO setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
 GPIO.setup(16, GPIO.OUT)
@@ -22,6 +40,25 @@ p1.start(7)
 p2.start(7)
 p1stop = False
 p2stop = False
+
+# def the frame-update function
+def printop(number):
+	# update the left queue 
+	leftlogqueue.pop()
+	leftlogqueue.append()
+	# update the right queue 
+	rightlogqueue.pop()
+	rightlogqueue.append()
+	# print the log
+	#initial 
+	toprint = logqueue[i] + timeofoperation
+	text = my_font.render(toprint, True, WHITE)
+	textRect = text.get_rect(center=(160,120))  
+	screen.blit(text, textRect)
+
+	pygame.display.flip()
+
+
 while(True):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 	time.sleep(0.1)
@@ -70,34 +107,4 @@ p2.stop()
 GPIO.cleanup()
 
 
-#pygame init 
-pygame.init()
-pygame.mouse.set_visible(False)
-WHITE = 255, 255, 255
-BLACK = 0,0,0
-green = (0, 255, 0) 
-blue = (0, 0, 128) 
-screen = pygame.display.set_mode((320, 240))
-my_font= pygame.font.Font(None, 50)
-my_buttons= { 'stop':(160,120), 'quit': (160,200)}
 
-command = ['stop', 'clockwise','counter-clockwise']
-
-#left log queue for printing 
-leftlogqueue = ['stop', 'stop','stop']
-# right log queue for printing
-rightlogqueue = ['stop', 'stop','stop']
-# update the left queue 
-leftlogqueue.pop()
-leftlogqueue.append()
-# update the right queue 
-rightlogqueue.pop()
-rightlogqueue.append()
-# print the log
-#initial 
-toprint = logqueue[i] + timeofoperation
-text = my_font.render(toprint, True, WHITE)
-textRect = text.get_rect(center=(160,120))  
-screen.blit(text, textRect)
-
-pygame.display.flip()
