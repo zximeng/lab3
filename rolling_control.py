@@ -43,12 +43,30 @@ p2stop = False
 
 # def the frame-update function
 def printop(number):
+	if(number == 22):
+		leftlogqueue.pop()
+		leftlogqueue.append("stop")
+	elif(number == 23)
+		leftlogqueue.pop()
+		leftlogqueue.append("counter-clockwise")
+	elif(number == 17)
+		leftlogqueue.pop()
+		leftlogqueue.append("clockwise")
+	elif(number == 19):
+		rightlogqueue.pop()
+		rightlogqueue.append("stop")
+	elif(number == 26)
+		rightlogqueue.pop()
+		rightlogqueue.append("counter-clockwise")
+	elif(number == 27)
+		rightlogqueue.pop()
+		rightlogqueue.append("clockwise")
 	# update the left queue 
-	leftlogqueue.pop()
-	leftlogqueue.append()
+	#leftlogqueue.pop()
+	#leftlogqueue.append()
 	# update the right queue 
-	rightlogqueue.pop()
-	rightlogqueue.append()
+	#rightlogqueue.pop()
+	#rightlogqueue.append()
 	# print the log
 	#initial 
 	toprint = logqueue[i] + timeofoperation
