@@ -27,6 +27,15 @@ command = ['stop', 'clockwise','counter-clockwise']
 leftlogqueue = ['stop', 'stop','stop']
 # right log queue for printing
 rightlogqueue = ['stop', 'stop','stop']
+#time queue for left
+timeleft = ['0', '0','0']
+#time queue for right
+timeright = ['0', '0','0']
+#left center positions
+leftcenters = []
+#right center positions
+rightcenters = []
+
 
 #GPIO setup
 GPIO.setmode(GPIO.BCM)
@@ -43,38 +52,43 @@ p2stop = False
 
 # def the frame-update function
 def printop(number):
-	if(number == 22):
-		leftlogqueue.pop()
-		leftlogqueue.append("stop")
-	elif(number == 23)
-		leftlogqueue.pop()
-		leftlogqueue.append("counter-clockwise")
-	elif(number == 17)
-		leftlogqueue.pop()
-		leftlogqueue.append("clockwise")
-	elif(number == 19):
-		rightlogqueue.pop()
-		rightlogqueue.append("stop")
-	elif(number == 26)
-		rightlogqueue.pop()
-		rightlogqueue.append("counter-clockwise")
-	elif(number == 27)
-		rightlogqueue.pop()
-		rightlogqueue.append("clockwise")
 	# update the left queue 
 	#leftlogqueue.pop()
 	#leftlogqueue.append()
 	# update the right queue 
 	#rightlogqueue.pop()
 	#rightlogqueue.append()
-	# print the log
-	#initial 
-	toprint = logqueue[i] + timeofoperation
-	text = my_font.render(toprint, True, WHITE)
-	textRect = text.get_rect(center=(160,120))  
-	screen.blit(text, textRect)
+	if(number == 22):
+		leftlogqueue.pop()
+		leftlogqueue.append("stop")
+	elif(number == 23):
+		leftlogqueue.pop()
+		leftlogqueue.append("counter-clockwise")
+	elif(number == 17):
+		leftlogqueue.pop()
+		leftlogqueue.append("clockwise")
+	elif(number == 19):
+		rightlogqueue.pop()
+		rightlogqueue.append("stop")
+	elif(number == 26):
+		rightlogqueue.pop()
+		rightlogqueue.append("counter-clockwise")
+	elif(number == 27):
+		rightlogqueue.pop()
+		rightlogqueue.append("clockwise")
 
-	pygame.display.flip()
+	
+	# print the log
+	#initial
+	for i in range(0,3): 
+		toprint = leftlogqueue[i] + timeleft[i]
+		text = my_font.render(toprint, True, WHITE)
+		textRect = text.get_rect(center=(160,120))  
+		screen.blit(text, textRect)
+
+		pygame.display.flip()
+	# print the center round button and quit button
+	
 
 
 while(True):
