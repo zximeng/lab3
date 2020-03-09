@@ -62,32 +62,32 @@ def printop(number):
 		leftlogqueue.pop(0)
 		leftlogqueue.append("stop")
 		timeleft.pop(0)
-		timeleft.append(time.time-firsttime)
+		timeleft.append(str(time.time-firsttime))
 	elif(number == 23):
 		leftlogqueue.pop(0)
 		leftlogqueue.append("counter-clockwise")
 		timeleft.pop(0)
-		timeleft.append(time.time-firsttime)
+		timeleft.append(str(time.time-firsttime))
 	elif(number == 17):
 		leftlogqueue.pop(0)
 		leftlogqueue.append("clockwise")
 		timeleft.pop(0)
-		timeleft.append(time.time-firsttime)
+		timeleft.append(str(time.time-firsttime))
 	elif(number == 19):
 		rightlogqueue.pop(0)
 		rightlogqueue.append("stop")
 		timeright.pop(0)
-		timeright.append(time.time-firsttime)
+		timeleft.append(str(time.time-firsttime))
 	elif(number == 26):
 		rightlogqueue.pop(0)
 		rightlogqueue.append("counter-clockwise")
 		timeright.pop(0)
-		timeright.append(time.time-firsttime)
+		timeleft.append(str(time.time-firsttime))
 	elif(number == 27):
 		rightlogqueue.pop(0)
 		rightlogqueue.append("clockwise")
 		timeright.pop(0)
-		timeright.append(time.time-firsttime)
+		timeleft.append(str(time.time-firsttime))
 
 	
 	# print the log
