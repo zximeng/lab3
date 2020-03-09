@@ -137,7 +137,7 @@ def printop(number):
 			screen.blit(text_surface, rect)
 	else:
 		pygame.draw.circle(screen, green, [140, 120], 30)
-		for (my_text, text_pos) in my_buttons.items2():    
+		for (my_text, text_pos) in my_buttons2.items():    
 			text_surface = my_font.render(my_text, True, WHITE)    
 			rect = text_surface.get_rect(center=text_pos)
 			#print(my_text)
