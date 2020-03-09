@@ -23,6 +23,7 @@ my_buttons= { 'stop':(160,120), 'quit': (160,200)}
 
 command = ['stop', 'clockwise','counter-clockwise']
 
+history = ['left history', 'right history']
 #left log queue for printing 
 leftlogqueue = ['stop', 'stop','stop']
 # right log queue for printing
@@ -35,6 +36,8 @@ timeright = ['0', '0','0']
 leftcenters = [(30,60),(30,120),(30,180)]
 #right center positions
 rightcenters = [(240,60),(240,120),(240,180)]
+#history center
+hc = [(30,10),(240,10)]
 
 
 #GPIO setup
@@ -99,6 +102,12 @@ def printop(number):
 	
 	# print the log
 	#initial
+	for i in range(0,2):
+		toprint = history[i]
+		text = my_font.render(toprint, True, WHITE)
+		textRect = text.get_rect(center=hc[i]) 
+		# print logqueue[i] + timequeue[i] at centerqueue[i]
+		screen.blit(text, textRect)
 	for i in range(0,3): 
 		toprint = leftlogqueue[i] + timeleft[i]
 		text = my_font.render(toprint, True, WHITE)
