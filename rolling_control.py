@@ -18,7 +18,7 @@ BLACK = 0,0,0
 green = (0, 255, 0) 
 blue = (0, 0, 128) 
 screen = pygame.display.set_mode((320, 240))
-my_font= pygame.font.Font(None, 30)
+my_font= pygame.font.Font(None, 24)
 my_buttons= { 'stop':(160,120), 'quit': (160,200)}
 
 command = ['stop', 'clockwise','counter-clockwise']
@@ -64,37 +64,37 @@ def printop(number):
 		leftlogqueue.append("stop")
 		timeleft.pop(0)
 		timepast = time.time() - firsttime
-		timeleft.append(str(timepast))
+		timeleft.append(str(int(timepast)))
 	elif(number == 23):
 		leftlogqueue.pop(0)
 		leftlogqueue.append("counter-clockwise")
 		timeleft.pop(0)
 		timepast = time.time() - firsttime
-		timeleft.append(str(timepast))
+		timeleft.append(str(int(timepast)))
 	elif(number == 17):
 		leftlogqueue.pop(0)
 		leftlogqueue.append("clockwise")
 		timeleft.pop(0)
 		timepast = time.time() - firsttime
-		timeleft.append(str(timepast))
+		timeleft.append(str(int(timepast)))
 	elif(number == 19):
 		rightlogqueue.pop(0)
 		rightlogqueue.append("stop")
 		timeright.pop(0)
 		timepast = time.time() - firsttime
-		timeright.append(str(timepast))
+		timeright.append(str(int(timepast)))
 	elif(number == 26):
 		rightlogqueue.pop(0)
 		rightlogqueue.append("counter-clockwise")
 		timeright.pop(0)
 		timepast = time.time() - firsttime
-		timeright.append(str(timepast))
+		timeright.append(str(int(timepast)))
 	elif(number == 27):
 		rightlogqueue.pop(0)
 		rightlogqueue.append("clockwise")
 		timeright.pop(0)
 		timepast = time.time() - firsttime
-		timeright.append(str(timepast))
+		timeright.append(str(int(timepast)))
 
 	
 	# print the log
