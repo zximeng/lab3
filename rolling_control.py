@@ -151,6 +151,7 @@ def printop(number):
 	
 
 flag = True
+stopall = False
 while(flag):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 	#screen.fill(BLACK)
@@ -167,58 +168,67 @@ while(flag):
 			
 	    
 	time.sleep(0.1)
-	printop(0)	
-	if(not GPIO.input(22)):
-		p1.stop()
-		p1stop = True
-		printop(22)
-	if(not GPIO.input(23)):
-		printop(23)
-		if(p1stop == True):
-			
-			p1.start(7.83)
-			p1.ChangeFrequency(46.08)
-		else:			
-			p1.ChangeFrequency(46.08)
-			p1.ChangeDutyCycle(7.83)		
-	if(not GPIO.input(17)):
-		printop(17)
-		if(p1stop == True):
-			
-			p1.start(6.10)
-			p1.ChangeFrequency(46.95)
-		else:
-			p1.ChangeFrequency(46.95)
-			p1.ChangeDutyCycle(6.10)	
-	if(not GPIO.input(19)):
-		printop(19)
-		p2.stop()
-		p2stop = True
-	if(not GPIO.input(26)):
-		printop(26)
-		if(p2stop == True):
-			
-			p2.start(7.83)
-			p2.ChangeFrequency(46.08)
-		else:
-			p2.ChangeFrequency(46.08)
-			p2.ChangeDutyCycle(7.83)		
-	if(not GPIO.input(27)):
-		printop(27)
-		if(p2stop == True):
-			
-			p2.start(6.10)
-			p2.ChangeFrequency(46.95)
-		else:
-			p2.ChangeFrequency(46.95)
-			p2.ChangeDutyCycle(6.10)
+	printop(0)
+	if(not stopall):
+		if(not GPIO.input(22)):
+			p1.stop()
+			p1stop = True
+			printop(22)
+		if(not GPIO.input(23)):
+			printop(23)
+			if(p1stop == True):
+				
+				p1.start(7.83)
+				p1.ChangeFrequency(46.08)
+			else:			
+				p1.ChangeFrequency(46.08)
+				p1.ChangeDutyCycle(7.83)		
+		if(not GPIO.input(17)):
+			printop(17)
+			if(p1stop == True):
+				
+				p1.start(6.10)
+				p1.ChangeFrequency(46.95)
+			else:
+				p1.ChangeFrequency(46.95)
+				p1.ChangeDutyCycle(6.10)	
+		if(not GPIO.input(19)):
+			printop(19)
+			p2.stop()
+			p2stop = True
+		if(not GPIO.input(26)):
+			printop(26)
+			if(p2stop == True):
+				
+				p2.start(7.83)
+				p2.ChangeFrequency(46.08)
+			else:
+				p2.ChangeFrequency(46.08)
+				p2.ChangeDutyCycle(7.83)		
+		if(not GPIO.input(27)):
+			printop(27)
+			if(p2stop == True):
+				
+				p2.start(6.10)
+				p2.ChangeFrequency(46.95)
+			else:
+				p2.ChangeFrequency(46.95)
+				p2.ChangeDutyCycle(6.10)
 	for event in pygame.event.get():
 		if(event.type is MOUSEBUTTONUP):
 			pos = pygame.mouse.get_pos() 
 			x,y = pos
 			if(x<180 and x> 100):
 				if(y<140 and y > 100):
-					estop = not estop
+					if (estop == False):
+						estop = not estop
+						p1.stop()
+						p2.stop()
+						p1stop = True
+						p2stop = True
+						stopall = True	
+					else:
+						stopall = False
 					printop(0)
 			if(x>200):
 				if(y>200):
