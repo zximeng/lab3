@@ -32,9 +32,9 @@ timeleft = ['0', '0','0']
 #time queue for right
 timeright = ['0', '0','0']
 #left center positions
-leftcenters = []
+leftcenters = [(30,60),(30,120),(30,180)]
 #right center positions
-rightcenters = []
+rightcenters = [(240,60),(240,120),(240,180)]
 
 
 #GPIO setup
@@ -49,7 +49,7 @@ p1.start(7)
 p2.start(7)
 p1stop = False
 p2stop = False
-
+firsttime = time.time()
 # def the frame-update function
 def printop(number):
 	# update the left queue 
@@ -59,23 +59,35 @@ def printop(number):
 	#rightlogqueue.pop()
 	#rightlogqueue.append()
 	if(number == 22):
-		leftlogqueue.pop()
+		leftlogqueue.pop(0)
 		leftlogqueue.append("stop")
+		timeleft.pop(0)
+		timeleft.append(time.time-firsttime)
 	elif(number == 23):
-		leftlogqueue.pop()
+		leftlogqueue.pop(0)
 		leftlogqueue.append("counter-clockwise")
+		timeleft.pop(0)
+		timeleft.append(time.time-firsttime)
 	elif(number == 17):
-		leftlogqueue.pop()
+		leftlogqueue.pop(0)
 		leftlogqueue.append("clockwise")
+		timeleft.pop(0)
+		timeleft.append(time.time-firsttime)
 	elif(number == 19):
-		rightlogqueue.pop()
+		rightlogqueue.pop(0)
 		rightlogqueue.append("stop")
+		timeright.pop(0)
+		timeright.append(time.time-firsttime)
 	elif(number == 26):
-		rightlogqueue.pop()
+		rightlogqueue.pop(0)
 		rightlogqueue.append("counter-clockwise")
+		timeright.pop(0)
+		timeright.append(time.time-firsttime)
 	elif(number == 27):
-		rightlogqueue.pop()
+		rightlogqueue.pop(0)
 		rightlogqueue.append("clockwise")
+		timeright.pop(0)
+		timeright.append(time.time-firsttime)
 
 	
 	# print the log
@@ -83,10 +95,17 @@ def printop(number):
 	for i in range(0,3): 
 		toprint = leftlogqueue[i] + timeleft[i]
 		text = my_font.render(toprint, True, WHITE)
-		textRect = text.get_rect(center=(160,120))  
+		textRect = text.get_rect(center=leftcenters[i]) 
+		# print logqueue[i] + timequeue[i] at centerqueue[i]
+		screen.blit(text, textRect)
+	for i in range(0,3): 
+		toprint = rightlogqueue[i] + timeright[i]
+		text = my_font.render(toprint, True, WHITE)
+		textRect = text.get_rect(center=rightcenters[i]) 
+		# print logqueue[i] + timequeue[i] at centerqueue[i]
 		screen.blit(text, textRect)
 
-		pygame.display.flip()
+	pygame.display.flip()
 	# print the center round button and quit button
 	
 
