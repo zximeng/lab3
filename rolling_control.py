@@ -113,10 +113,13 @@ def printop(number):
 while(True):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 	time.sleep(0.1)
+	printop(0)
 	if(not GPIO.input(22)):
 		p1.stop()
 		p1stop = True
+		printop(22)
 	if(not GPIO.input(23)):
+		printop(23)
 		if(p1stop == True):
 			
 			p1.start(7.83)
@@ -125,6 +128,7 @@ while(True):
 			p1.ChangeFrequency(46.08)
 			p1.ChangeDutyCycle(7.83)		
 	if(not GPIO.input(17)):
+		printop(17)
 		if(p1stop == True):
 			
 			p1.start(6.10)
@@ -133,9 +137,11 @@ while(True):
 			p1.ChangeFrequency(46.95)
 			p1.ChangeDutyCycle(6.10)	
 	if(not GPIO.input(19)):
+		printop(19)
 		p2.stop()
 		p2stop = True
 	if(not GPIO.input(26)):
+		printop(26)
 		if(p2stop == True):
 			
 			p2.start(7.83)
@@ -144,6 +150,7 @@ while(True):
 			p2.ChangeFrequency(46.08)
 			p2.ChangeDutyCycle(7.83)		
 	if(not GPIO.input(27)):
+		printop(27)
 		if(p2stop == True):
 			
 			p2.start(6.10)
