@@ -10,7 +10,10 @@ import os    # for OS calls
 import time
 import RPi.GPIO as GPIO
 from pygame.locals import *   # for event MOUSE variables
-
+os.putenv('SDL_VIDEODRIVER', 'fbcon')   # Display on piTFT
+os.putenv('SDL_FBDEV', '/dev/fb1')     
+os.putenv('SDL_MOUSEDRV', 'TSLIB')     # Track mouse clicks on piTFT
+os.putenv('SDL_MOUSEDEV', '/dev/input/touchscreen')
 #pygame init 
 pygame.init()
 pygame.mouse.set_visible(True)
