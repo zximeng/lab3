@@ -18,7 +18,7 @@ BLACK = 0,0,0
 green = (0, 255, 0) 
 blue = (0, 0, 128) 
 screen = pygame.display.set_mode((320, 240))
-my_font= pygame.font.Font(None, 50)
+my_font= pygame.font.Font(None, 30)
 my_buttons= { 'stop':(160,120), 'quit': (160,200)}
 
 command = ['stop', 'clockwise','counter-clockwise']
@@ -58,6 +58,7 @@ def printop(number):
 	# update the right queue 
 	#rightlogqueue.pop()
 	#rightlogqueue.append()
+	screen.fill(BLACK)
 	if(number == 22):
 		leftlogqueue.pop(0)
 		leftlogqueue.append("stop")
