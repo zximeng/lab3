@@ -12,7 +12,7 @@ import RPi.GPIO as GPIO
 
 #pygame init 
 pygame.init()
-pygame.mouse.set_visible(False)
+pygame.mouse.set_visible(True)
 WHITE = 255, 255, 255
 BLACK = 0,0,0
 RED=255,0,0
@@ -211,15 +211,17 @@ while(flag):
 		else:
 			p2.ChangeFrequency(46.95)
 			p2.ChangeDutyCycle(6.10)
-	pos = pygame.mouse.get_pos() 
-	x,y = pos
-	if(x<180 and x> 100):
-		if(y<140 and y > 100):
-			estop = not estop
-			printop(0)
-	if(x>200):
-		if(y>200):
-			flag = False
+	for event in pygame.event.get():
+		if(event.type is MOUSEBUTTONUP):
+			pos = pygame.mouse.get_pos() 
+			x,y = pos
+			if(x<180 and x> 100):
+				if(y<140 and y > 100):
+					estop = not estop
+					printop(0)
+			if(x>200):
+				if(y>200):
+					flag = False
 
 p1.stop()
 p2.stop()
