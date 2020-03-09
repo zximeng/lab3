@@ -156,6 +156,8 @@ def printop(number):
 flag = True
 stopall = False
 starttime = time.time()
+leftstate = "stop"
+rightstate = "stop"
 while(flag):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 	#screen.fill(BLACK)
@@ -175,49 +177,61 @@ while(flag):
 	printop(0)
 	if(not stopall):
 		if(not GPIO.input(22)):
-			p1.stop()
-			p1stop = True
-			printop(22)
+			time.sleep(0.01)
+			if(not GPIO.input(22)):
+				p1.stop()
+				p1stop = True
+				printop(22)
 		if(not GPIO.input(23)):
-			printop(23)
-			if(p1stop == True):
-				
-				p1.start(7.83)
-				p1.ChangeFrequency(46.08)
-			else:			
-				p1.ChangeFrequency(46.08)
-				p1.ChangeDutyCycle(7.83)		
+			time.sleep(0.01)
+			if(not GPIO.input(23)):
+				printop(23)
+				if(p1stop == True):
+					
+					p1.start(7.83)
+					p1.ChangeFrequency(46.08)
+				else:			
+					p1.ChangeFrequency(46.08)
+					p1.ChangeDutyCycle(7.83)		
 		if(not GPIO.input(17)):
-			printop(17)
-			if(p1stop == True):
-				
-				p1.start(6.10)
-				p1.ChangeFrequency(46.95)
-			else:
-				p1.ChangeFrequency(46.95)
-				p1.ChangeDutyCycle(6.10)	
+			time.sleep(0.01)
+			if(not GPIO.input(17)):
+				printop(17)
+				if(p1stop == True):
+					
+					p1.start(6.10)
+					p1.ChangeFrequency(46.95)
+				else:
+					p1.ChangeFrequency(46.95)
+					p1.ChangeDutyCycle(6.10)	
 		if(not GPIO.input(19)):
-			printop(19)
-			p2.stop()
-			p2stop = True
+			time.sleep(0.01)
+			if(not GPIO.input(19)):
+				printop(19)
+				p2.stop()
+				p2stop = True
 		if(not GPIO.input(26)):
-			printop(26)
-			if(p2stop == True):
-				
-				p2.start(7.83)
-				p2.ChangeFrequency(46.08)
-			else:
-				p2.ChangeFrequency(46.08)
-				p2.ChangeDutyCycle(7.83)		
+			time.sleep(0.01)
+			if(not GPIO.input(26)):
+				printop(26)
+				if(p2stop == True):
+					
+					p2.start(7.83)
+					p2.ChangeFrequency(46.08)
+				else:
+					p2.ChangeFrequency(46.08)
+					p2.ChangeDutyCycle(7.83)		
 		if(not GPIO.input(27)):
-			printop(27)
-			if(p2stop == True):
-				
-				p2.start(6.10)
-				p2.ChangeFrequency(46.95)
-			else:
-				p2.ChangeFrequency(46.95)
-				p2.ChangeDutyCycle(6.10)
+			time.sleep(0.01)
+			if(not GPIO.input(27)):
+				printop(27)
+				if(p2stop == True):
+					
+					p2.start(6.10)
+					p2.ChangeFrequency(46.95)
+				else:
+					p2.ChangeFrequency(46.95)
+					p2.ChangeDutyCycle(6.10)
 	for event in pygame.event.get():
 		if(event.type is MOUSEBUTTONUP):
 			pos = pygame.mouse.get_pos() 
@@ -230,10 +244,26 @@ while(flag):
 						p2.stop()
 						p1stop = True
 						p2stop = True
-						stopall = True	
+						stopall = True
+						leftstate = leftlogqueue[2]
+						rightstate = rightlogqueue[2]
 					else:
 						stopall = False
 						estop = not estop
+						if leftstate == "clockwise":
+							p1.start(6.10)
+							p1.ChangeFrequency(46.95)
+						elif leftstate == "counter-clockwise":
+							p1.start(7.83)
+							p1.ChangeFrequency(46.08)
+						if rightstate == "clockwise":
+							p2.start(6.10)
+							p2.ChangeFrequency(46.95)
+						elif rightstate == "counter-clockwise":
+							p2.start(7.83)
+							p2.ChangeFrequency(46.08)
+
+						
 					printop(0)
 			if(x>200):
 				if(y>200):
