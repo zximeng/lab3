@@ -19,7 +19,7 @@ green = (0, 255, 0)
 blue = (0, 0, 128) 
 screen = pygame.display.set_mode((320, 240))
 my_font= pygame.font.Font(None, 24)
-my_buttons= { 'stop':(160,120), 'quit': (160,200)}
+my_buttons= { 'STOP':(140,120), 'QUIT':(300,220)}
 
 command = ['stop', 'clockwise','counter-clockwise']
 
@@ -37,7 +37,7 @@ leftcenters = [(30,60),(30,120),(30,180)]
 #right center positions
 rightcenters = [(240,60),(240,120),(240,180)]
 #history center
-hc = [(30,10),(240,10)]
+hc = [(50,10),(220,10)]
 
 
 #GPIO setup
@@ -125,11 +125,31 @@ def printop(number):
 	# print the center round button and quit button
 	
 
-
-while(True):
+flag = True
+while(flag):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
+	#screen.fill(BLACK)
+	for (my_text, text_pos) in my_buttons.items():    
+		text_surface = my_font.render(my_text, True, WHITE)    
+		rect = text_surface.get_rect(center=text_pos)
+		#print(my_text)
+		#print(my_buttons)
+		screen.blit(text_surface, rect)
+	pygame.display.flip()
+	pos = pygame.mouse.get_pos() 
+	x,y = pos
+	#if y<144&y>96:
+	#	if x<  x>:
+	#		flag = False
+			
+	#if  :
+	#	if  :
+	#		printop(19)
+	#		printop(22)
+			
+	    
 	time.sleep(0.1)
-	printop(0)
+	printop(0)	
 	if(not GPIO.input(22)):
 		p1.stop()
 		p1stop = True
