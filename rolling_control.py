@@ -15,11 +15,14 @@ pygame.init()
 pygame.mouse.set_visible(False)
 WHITE = 255, 255, 255
 BLACK = 0,0,0
+RED=255,0,0
+
 green = (0, 255, 0) 
 blue = (0, 0, 128) 
 screen = pygame.display.set_mode((320, 240))
 my_font= pygame.font.Font(None, 24)
 my_buttons= { 'STOP':(140,120), 'QUIT':(300,220)}
+my_buttons2= { 'Resume':(140,120), 'QUIT':(300,220)}
 
 command = ['stop', 'clockwise','counter-clockwise']
 
@@ -53,6 +56,9 @@ p2.start(7)
 p1stop = False
 p2stop = False
 firsttime = time.time()
+
+# flag to track whether emergency stop has been clicked. 
+estop = False
 # def the frame-update function
 def printop(number):
 	# update the left queue 
@@ -120,6 +126,24 @@ def printop(number):
 		textRect = text.get_rect(center=rightcenters[i]) 
 		# print logqueue[i] + timequeue[i] at centerqueue[i]
 		screen.blit(text, textRect)
+	if(not estop):
+		pygame.draw.circle(screen, RED, [140, 120], 30, 1)
+		for (my_text, text_pos) in my_buttons.items():    
+			text_surface = my_font.render(my_text, True, WHITE)    
+			rect = text_surface.get_rect(center=text_pos)
+			#print(my_text)
+			#print(my_buttons)
+			screen.blit(text_surface, rect)
+	else:
+		pygame.draw.circle(screen, green, [140, 120], 30, 1)
+		for (my_text, text_pos) in my_buttons.items2():    
+			text_surface = my_font.render(my_text, True, WHITE)    
+			rect = text_surface.get_rect(center=text_pos)
+			#print(my_text)
+			#print(my_buttons)
+			screen.blit(text_surface, rect)
+	
+	
 
 	pygame.display.flip()
 	# print the center round button and quit button
@@ -129,15 +153,7 @@ flag = True
 while(flag):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 	#screen.fill(BLACK)
-	for (my_text, text_pos) in my_buttons.items():    
-		text_surface = my_font.render(my_text, True, WHITE)    
-		rect = text_surface.get_rect(center=text_pos)
-		#print(my_text)
-		#print(my_buttons)
-		screen.blit(text_surface, rect)
-	pygame.display.flip()
-	pos = pygame.mouse.get_pos() 
-	x,y = pos
+
 	#if y<144&y>96:
 	#	if x<  x>:
 	#		flag = False
@@ -146,6 +162,7 @@ while(flag):
 	#	if  :
 	#		printop(19)
 	#		printop(22)
+	
 			
 	    
 	time.sleep(0.1)
@@ -194,7 +211,15 @@ while(flag):
 		else:
 			p2.ChangeFrequency(46.95)
 			p2.ChangeDutyCycle(6.10)
-
+	pos = pygame.mouse.get_pos() 
+	x,y = pos
+	if(x<180 and x> 100):
+		if(y<140 and y > 100):
+			estop = not estop
+			printop(0)
+	if(x>200):
+		if(y>200):
+			flag = False
 
 p1.stop()
 p2.stop()
