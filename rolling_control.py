@@ -155,6 +155,7 @@ def printop(number):
 
 flag = True
 stopall = False
+starttime = time.time()
 while(flag):
 	GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 	#screen.fill(BLACK)
@@ -237,6 +238,9 @@ while(flag):
 			if(x>200):
 				if(y>200):
 					flag = False
+	currenttime = time.time()
+	if currenttime - starttime >30:
+		flag = False
 
 p1.stop()
 p2.stop()
