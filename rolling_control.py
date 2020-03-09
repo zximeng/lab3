@@ -9,6 +9,7 @@ import pygame     # Import pygame graphics library
 import os    # for OS calls
 import time
 import RPi.GPIO as GPIO
+from pygame.locals import *   # for event MOUSE variables
 
 #pygame init 
 pygame.init()
@@ -127,7 +128,7 @@ def printop(number):
 		# print logqueue[i] + timequeue[i] at centerqueue[i]
 		screen.blit(text, textRect)
 	if(not estop):
-		pygame.draw.circle(screen, RED, [140, 120], 30, 1)
+		pygame.draw.circle(screen, RED, [140, 120], 30)
 		for (my_text, text_pos) in my_buttons.items():    
 			text_surface = my_font.render(my_text, True, WHITE)    
 			rect = text_surface.get_rect(center=text_pos)
@@ -135,7 +136,7 @@ def printop(number):
 			#print(my_buttons)
 			screen.blit(text_surface, rect)
 	else:
-		pygame.draw.circle(screen, green, [140, 120], 30, 1)
+		pygame.draw.circle(screen, green, [140, 120], 30)
 		for (my_text, text_pos) in my_buttons.items2():    
 			text_surface = my_font.render(my_text, True, WHITE)    
 			rect = text_surface.get_rect(center=text_pos)
