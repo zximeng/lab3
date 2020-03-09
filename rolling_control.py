@@ -229,6 +229,7 @@ while(flag):
 						stopall = True	
 					else:
 						stopall = False
+						estop = not estop
 					printop(0)
 			if(x>200):
 				if(y>200):
