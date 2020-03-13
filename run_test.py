@@ -71,10 +71,11 @@ GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 currentstep = 0
 
 def stopmotor():
+	global estop
 	currenttime = time.time()
 	timepast = 0
 	#stop
-	while(timepast < 3):
+	while(timepast < 3 and not estop):
 		p1.stop()
 		printop(22)
 		p2.stop()
@@ -82,10 +83,11 @@ def stopmotor():
 		timepast = time.time() - currenttime
 		checkforstop()
 def movebackward():
+	global estop
 	currenttime = time.time()
 	timepast = 0
 	# Move the robot forward about 1 foot 
-	while(timepast < 3):
+	while(timepast < 3 and not estop):
 		p1.start(6.54)
 		p1.ChangeFrequency(46.73)
 		printop(17)
@@ -95,10 +97,11 @@ def movebackward():
 		timepast = time.time() - currenttime
 		checkforstop()
 def pivotleft():
+	global estop
 	currenttime = time.time()
 	timepast = 0
 	#pivot left
-	while(timepast < 3):
+	while(timepast < 3 and not estop):
 		p1.start(7.4)
 		p1.ChangeFrequency(46.3)
 		printop(17)
@@ -107,10 +110,11 @@ def pivotleft():
 		timepast = time.time() - currenttime
 		checkforstop()
 def pivotright():
+	global estop
 	currenttime = time.time()
 	timepast = 0
 	#pivot right
-	while(timepast < 3):
+	while(timepast < 3 and not estop):
 		p2.start(6.54)
 		p2.ChangeFrequency(46.73)
 		printop(26)
@@ -119,10 +123,11 @@ def pivotright():
 		timepast = time.time() - currenttime
 		checkforstop()
 def moveforward1():
+	global estop
 	currenttime = time.time()
 	timepast = 0
 	#backward 1 foot
-	while(timepast < 3):
+	while(timepast < 3 and not estop):
 		p2.start(6.54)
 		p2.ChangeFrequency(46.73)
 		printop(27)
