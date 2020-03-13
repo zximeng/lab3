@@ -72,7 +72,7 @@ def stopmotor():
 		printop(19)
 		timepast = time.time() - currenttime
 		checkforstop()
-def moveforward1():
+def movebackward():
 	currenttime = time.time()
 	timepast = 0
 	# Move the robot forward about 1 foot 
@@ -102,14 +102,14 @@ def pivotright():
 	timepast = 0
 	#pivot right
 	while(timepast < 3):
-		p2.start(6.54)
-		p2.ChangeFrequency(46.73)
-		printop(27)
+		p2.start(7.4)
+		p2.ChangeFrequency(46.3)
+		printop(26)
 		p1.stop()
 		printop(22)
 		timepast = time.time() - currenttime
 		checkforstop()
-def movebackward():
+def moveforward1():
 	currenttime = time.time()
 	timepast = 0
 	#backward 1 foot
@@ -287,6 +287,7 @@ while(flag):
 	#stop()
 	if step ==6: 
 		stopmotor()
+	step == 0
 
 
 
