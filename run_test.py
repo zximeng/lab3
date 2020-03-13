@@ -235,6 +235,9 @@ def printop(number):
 # Record start before the while loop and end while if time is up.  
 
 def checkforstop():  
+	global estop
+	global stopall
+	global step
 	for event in pygame.event.get():
 		if(event.type is MOUSEBUTTONUP):
 			pos = pygame.mouse.get_pos() 
