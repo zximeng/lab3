@@ -252,6 +252,7 @@ def checkforstop():
 						p1.stop()
 						p2.stop()
 						currentstep = step
+						step = 7
 					else:
 						stopall = False
 						estop = not estop
