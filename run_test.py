@@ -251,9 +251,6 @@ def checkforstop():
 						estop = not estop
 						p1.stop()
 						p2.stop()
-						p1stop = True
-						p2stop = True
-						stopall = True
 						currentstep = step
 					else:
 						stopall = False
@@ -269,12 +266,13 @@ while(flag):
 	time.sleep(0.1)
 	printop(0) 
 
-
+	checkforstop()
 	# Move the robot forward about 1 foot 
 	if step == 0 and not estop :
 		moveforward1()
 		step+=1
 	#stop
+	checkforstop()
 	if step ==1 and not estop: 
 		stopmotor()
 		step+=1
@@ -282,22 +280,27 @@ while(flag):
 	if step ==2 and not estop: 
 		movebackward()
 		step+=1
+	checkforstop()
 	#pivot left 
 	if step ==3 and not estop: 
 		pivotleft()
 		step+=1
 	#stop
+	checkforstop()
 	if step ==4 and not estop: 
 		stopmotor()
 		step+=1
 	#pivot right
+	checkforstop()
 	if step ==5 and not estop: 
 		pivotright()
 		step+=1
 	#stop()
+	checkforstop()
 	if step ==6 and not estop: 
 		stopmotor()
 	step = 0
+	checkforstop()
 
 
 
