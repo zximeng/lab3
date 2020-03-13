@@ -60,6 +60,14 @@ p2.start(7)
 p1stop = False
 p2stop = False
 firsttime = time.time()
+step = 0
+flag = True
+stopall = False
+estop = False
+starttime = time.time()
+leftstate = "stop"
+rightstate = "stop"
+GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
 
 def stopmotor():
 	currenttime = time.time()
@@ -129,7 +137,7 @@ def moveforward1():
 
 
 # flag to track whether emergency stop has been clicked. 
-estop = False
+
 # def the frame-update function
 
 def printop(number):
@@ -225,14 +233,7 @@ def printop(number):
 # 
 # Run a while loop for each action with timer waiting for the same time. 
 # Record start before the while loop and end while if time is up.  
-step = 0
-flag = True
-stopall = False
-estop = False
-starttime = time.time()
-leftstate = "stop"
-rightstate = "stop"
-GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
+
 def checkforstop():  
 	for event in pygame.event.get():
 		if(event.type is MOUSEBUTTONUP):
