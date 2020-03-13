@@ -68,6 +68,7 @@ starttime = time.time()
 leftstate = "stop"
 rightstate = "stop"
 GPIO.setup(chan_list,GPIO.IN,pull_up_down = GPIO.PUD_UP)
+currentstep = 0
 
 def stopmotor():
 	currenttime = time.time()
@@ -239,6 +240,7 @@ def checkforstop():
 	global stopall
 	global step
 	global currentstep
+	global flag
 	for event in pygame.event.get():
 		if(event.type is MOUSEBUTTONUP):
 			pos = pygame.mouse.get_pos() 
@@ -269,31 +271,31 @@ while(flag):
 
 
 	# Move the robot forward about 1 foot 
-	if step == 0:
+	if step == 0 and not estop :
 		moveforward1()
 		step+=1
 	#stop
-	if step ==1: 
+	if step ==1 and not estop: 
 		stopmotor()
 		step+=1
 	#backward 1 foot
-	if step ==2: 
+	if step ==2 and not estop: 
 		movebackward()
 		step+=1
 	#pivot left 
-	if step ==3: 
+	if step ==3 and not estop: 
 		pivotleft()
 		step+=1
 	#stop
-	if step ==4: 
+	if step ==4 and not estop: 
 		stopmotor()
 		step+=1
 	#pivot right
-	if step ==5: 
+	if step ==5 and not estop: 
 		pivotright()
 		step+=1
 	#stop()
-	if step ==6: 
+	if step ==6 and not estop: 
 		stopmotor()
 	step = 0
 
