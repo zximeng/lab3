@@ -256,6 +256,9 @@ def checkforstop():
 			if(x>200):
 				if(y>200):
 					flag = False 
+
+
+# main function: 
 while(flag): 
 	time.sleep(0.1)
 	printop(0) 
@@ -288,7 +291,7 @@ while(flag):
 	#stop()
 	if step ==6: 
 		stopmotor()
-	step == 0
+	step = 0
 
 
 
