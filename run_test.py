@@ -228,6 +228,7 @@ def printop(number):
 step = 0
 flag = True
 stopall = False
+estop = False
 starttime = time.time()
 leftstate = "stop"
 rightstate = "stop"
