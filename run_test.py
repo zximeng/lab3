@@ -273,20 +273,25 @@ while(flag):
 		step+=1
 	#stop
 	checkforstop()
+	if flag == False: break
 	if step ==1 and not estop: 
 		stopmotor()
 		step+=1
 	#backward 1 foot
+	checkforstop()
+	if flag == False: break
 	if step ==2 and not estop: 
 		movebackward()
 		step+=1
 	checkforstop()
+	if flag == False: break
 	#pivot left 
 	if step ==3 and not estop: 
 		pivotleft()
 		step+=1
 	#stop
 	checkforstop()
+	if flag == False: break
 	if step ==4 and not estop: 
 		stopmotor()
 		step+=1
@@ -297,6 +302,7 @@ while(flag):
 		step+=1
 	#stop()
 	checkforstop()
+	if flag == False: break
 	if step ==6 and not estop: 
 		stopmotor()
 	step = 0
