@@ -98,8 +98,8 @@ def pivotleft():
 	timepast = 0
 	#pivot left
 	while(timepast < 3):
-		p1.start(6.54)
-		p1.ChangeFrequency(46.73)
+		p1.start(7.4)
+		p1.ChangeFrequency(46.3)
 		printop(17)
 		p2.stop()
 		printop(19)
@@ -110,8 +110,8 @@ def pivotright():
 	timepast = 0
 	#pivot right
 	while(timepast < 3):
-		p2.start(7.4)
-		p2.ChangeFrequency(46.3)
+		p2.start(6.54)
+		p2.ChangeFrequency(46.73)
 		printop(26)
 		p1.stop()
 		printop(22)
@@ -238,6 +238,7 @@ def checkforstop():
 	global estop
 	global stopall
 	global step
+	global currentstep
 	for event in pygame.event.get():
 		if(event.type is MOUSEBUTTONUP):
 			pos = pygame.mouse.get_pos() 
